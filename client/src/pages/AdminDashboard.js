@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   Container, Typography, Grid, Card, CardContent,
-  Box, CircularProgress, Avatar, Chip, Button,
+  Box, CircularProgress, Avatar, Chip,
   Table, TableBody, TableCell, TableContainer,
   TableHead, TableRow, Paper, TextField, Tab, Tabs,
   Alert, IconButton, Tooltip,
@@ -35,7 +35,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     if (!user || user.role !== 'admin') { navigate('/dashboard'); return; }
     fetchAll();
-  }, [user]);
+  }, [user, navigate]);
 
   const fetchAll = async () => {
     setLoading(true);

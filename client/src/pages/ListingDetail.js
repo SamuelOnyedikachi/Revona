@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import {
   Container, Typography, Box, Chip, Button,
   CircularProgress, Grid, Paper, Alert, Avatar,
-  Divider, Rating, TextField,
+  Rating, TextField,
 } from '@mui/material';
 import PlaceIcon from '@mui/icons-material/Place';
 import ScaleIcon from '@mui/icons-material/Scale';

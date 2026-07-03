@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Drawer, Box, List, ListItem, ListItemButton,
   ListItemIcon, ListItemText, Divider, Avatar,

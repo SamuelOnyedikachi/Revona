@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import {
-  Container, Typography, Grid, Card, CardContent,
+  Container, Typography, Grid,
   Box, Chip, Accordion, AccordionSummary, AccordionDetails,
-  Avatar, Paper, Divider, Button,
+  Paper, Divider, Button,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AgricultureIcon from '@mui/icons-material/Agriculture';

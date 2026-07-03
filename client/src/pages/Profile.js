@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Container, Typography, Box, Avatar, Chip, Paper, CircularProgress, Grid, Rating } from '@mui/material';
+import { Container, Typography, Box, Avatar, Chip, Paper, CircularProgress, Rating } from '@mui/material';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import api from '../api';
 

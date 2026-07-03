@@ -84,7 +84,7 @@ export default function Navbar() {
           </Box>
 
           {/* Mobile: notification bell + post shortcut */}
-          <Box sx={{ display: { md: 'none' }, display: 'flex', alignItems: 'center' }}>
+          <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}>
             <NotificationBell />
             {user?.role === 'vendor' && (
               <IconButton component={Link} to="/listings/new" sx={{ color: '#52b788' }}><AddIcon /></IconButton>

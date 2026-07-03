@@ -6,7 +6,7 @@ import {
 } from '@mui/material';
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
-  Cell, PieChart, Pie, Legend, LineChart, Line,
+  Cell, PieChart, Pie, Legend,
   CartesianGrid, AreaChart, Area,
 } from 'recharts';
 import EcoIcon from '@mui/icons-material/EnergySavingsLeaf';

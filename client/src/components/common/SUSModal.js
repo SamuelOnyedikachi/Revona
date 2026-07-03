@@ -104,7 +104,6 @@ export default function SUSModal({ open, onClose, onSubmit }) {
   };
 
   const grade = score !== null ? getSUSGrade(score) : null;
-  const allAnswered = SUS_QUESTIONS.every((q) => answers[q.id]);
 
   return (
     <Dialog
