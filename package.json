@@ -6,8 +6,9 @@
   "packageManager": "pnpm@10.34.4",
   "scripts": {
     "dev": "concurrently \"pnpm run server\" \"pnpm run client\"",
+    "start": "pnpm -C server start",
     "server": "pnpm -C server dev",
-    "client": "pnpm -C client start",
+    "client": "pnpm -C client dev",
     "install:all": "pnpm install"
   },
   "devDependencies": {

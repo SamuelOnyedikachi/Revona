@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "ReVora backend — Node/Express/MongoDB/Socket.IO",
   "main": "index.js",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
