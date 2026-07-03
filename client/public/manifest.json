@@ -1,0 +1,47 @@
+{
+  "short_name": "ReVora",
+  "name": "ReVora — Circular Food Economy",
+  "description": "Connect food waste generators with farmers and composters across Nigeria",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/listings",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#2d6a4f",
+  "background_color": "#f8faf9",
+  "categories": ["productivity", "food", "utilities"],
+  "lang": "en-NG",
+  "shortcuts": [
+    {
+      "name": "Browse listings",
+      "short_name": "Browse",
+      "description": "Find available waste listings near you",
+      "url": "/listings",
+      "icons": [{ "src": "logo192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Post listing",
+      "short_name": "Post",
+      "description": "List your market waste",
+      "url": "/listings/new",
+      "icons": [{ "src": "logo192.png", "sizes": "192x192" }]
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+name: ReVora CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # ── Backend tests ──────────────────────────────────────────
+  server-tests:
+    name: Server unit & integration tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run server tests
+        env:
+          NODE_ENV: test
+          JWT_SECRET: ci_test_secret_key_do_not_use_in_prod
+        run: pnpm -C server test -- --coverage --coverageReporters=text-summary
+
+  # ── Frontend tests ─────────────────────────────────────────
+  client-tests:
+    name: Frontend component tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run client tests
+        run: pnpm -C client test -- --watchAll=false --coverage --coverageReporters=text-summary
+
+  # ── Build check ────────────────────────────────────────────
+  build-check:
+    name: Production build check
+    runs-on: ubuntu-latest
+    needs: [server-tests, client-tests]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Install & build client
+        env:
+          REACT_APP_SOCKET_URL: http://localhost:5000
+          CI: false   # allow warnings without failing
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm -C client build
+
+      - name: Verify build output
+        run: |
+          test -f client/build/index.html && echo "✅ Build succeeded"

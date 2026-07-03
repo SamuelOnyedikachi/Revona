@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8faf9;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Leaflet z-index fix inside MUI dialogs */
+.leaflet-container {
+  z-index: 0;
+  border-radius: 8px;
+}
+
+/* Smooth page transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 250ms ease, transform 250ms ease;
+}
