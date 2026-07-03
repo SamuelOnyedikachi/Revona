@@ -9,6 +9,7 @@ import EcoIcon from '@mui/icons-material/EnergySavingsLeaf';
 import AgricultureIcon from '@mui/icons-material/Agriculture';
 import RecyclingIcon from '@mui/icons-material/Recycling';
 import { useAuth } from '../context/AuthContext';
+import { getApiErrorMessage } from '../utils/apiError';
 
 const ROLES = [
   { value: 'vendor', label: 'Market Vendor', icon: <EcoIcon />, desc: 'I have fruit/veg waste to share' },
@@ -35,7 +36,7 @@ export default function Register() {
       const user = await register({ ...form, consentGiven: 'true' });
       navigate(user.role === 'vendor' ? '/listings/new' : '/listings');
     } catch (err) {
-      setError(err.response?.data?.message || 'Registration failed. Please try again.');
+      setError(getApiErrorMessage(err, 'Registration failed.'));
     } finally {
       setLoading(false);
     }

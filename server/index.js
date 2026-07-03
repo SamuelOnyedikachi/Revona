@@ -9,6 +9,7 @@ const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 
 const connectDB = require('./config/db');
+const { getAllowedOrigins } = require('./config/origins');
 const { initSocket } = require('./socket/index');
 const errorHandler = require('./middleware/errorHandler');
 
@@ -33,7 +34,7 @@ initSocket(httpServer);
 // ── Global middleware ──────────────────────────────────────
 app.use(helmet());
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  origin: getAllowedOrigins(),
   credentials: true,
 }));
 app.use(morgan('dev'));
