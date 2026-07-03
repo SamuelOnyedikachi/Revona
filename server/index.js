@@ -3,6 +3,7 @@ require('express-async-errors');
 
 const express = require('express');
 const http = require('http');
+const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
@@ -24,9 +25,6 @@ const adminRoutes = require('./routes/admin');
 
 const app = express();
 const httpServer = http.createServer(app);
-
-// ── DB ─────────────────────────────────────────────────────
-connectDB();
 
 // ── Socket.IO ──────────────────────────────────────────────
 initSocket(httpServer);
@@ -61,7 +59,14 @@ app.use('/api/admin', adminRoutes);
 
 // ── Health check ───────────────────────────────────────────
 app.get('/api/health', (req, res) =>
-  res.json({ status: 'ok', env: process.env.NODE_ENV })
+  res.json({
+    status: 'ok',
+    env: process.env.NODE_ENV,
+    database: {
+      connected: mongoose.connection.readyState === 1,
+      readyState: mongoose.connection.readyState,
+    },
+  })
 );
 
 // ── Error handler (must be last) ───────────────────────────
@@ -69,6 +74,12 @@ app.use(errorHandler);
 
 // ── Start ──────────────────────────────────────────────────
 const PORT = process.env.PORT || 5000;
-httpServer.listen(PORT, () =>
-  console.log(`🌱 ReVora server running on port ${PORT}`)
-);
+
+const startServer = async () => {
+  await connectDB();
+  httpServer.listen(PORT, () =>
+    console.log(`🌱 ReVora server running on port ${PORT}`)
+  );
+};
+
+startServer();
